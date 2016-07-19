@@ -10,15 +10,18 @@
 
 @implementation ChatTableViewCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (void)setUsername:(NSString *)username message:(NSString *)message {
+    if (username) {
+        self.userNameLabel.text = username;
+        [self.userNameLabel sizeToFit];
+        self.userNameHeightConstraint.constant = 21;
+        self.messageLabelTopConstraint.constant = 5;
+    } else {
+        self.userNameHeightConstraint.constant = 0;
+        self.messageLabelTopConstraint.constant = 0;
+    }
+    self.messageLabel.text = message;
+    [self.messageLabel sizeToFit];
 }
 
 @end
